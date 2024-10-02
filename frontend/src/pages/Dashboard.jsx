@@ -12,9 +12,9 @@ function Dashboard() {
   const [component, setComponent] = useState("My Blogs");
   // console.log(profile);
   console.log(isAuthenticated);
-  // if (!isAuthenticated) {
-  //   return <Navigate to={"/login"} />;
-  // }
+ if (!isAuthenticated) {
+     return <Navigate to={"/login"} />;
+  }
   return (
     <div>
       <Sidebar component={component} setComponent={setComponent} />
