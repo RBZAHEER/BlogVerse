@@ -14,8 +14,8 @@ export const createTokenAndSaveCookies = async (userId, res) => {
 
   // Set the token in cookies
   res.cookie("jwt", token, {
-    httpOnly: false, // Ensures the cookie is only accessible by the web server
-    secure: false, // Should be true in production when using HTTPS
+    httpOnly: true, // Ensures the cookie is only accessible by the web server
+    secure: true, // Should be true in production when using HTTPS
     sameSite: "none", // Adjust if necessary
     path: "/",
   });
