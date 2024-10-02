@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
         // Check if the token is available
         if (token) {
           const { data } = await axios.get(
-            "http://localhost:3000/api/users/getmyprofile",
+            "https://blogverse-ump1.onrender.com/api/users/getmyprofile",
             {
               withCredentials: true,
               headers: {
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     const fetchBlogs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/blogs/getallblog"
+          "https://blogverse-ump1.onrender.com/api/blogs/getallblog"
         );
         // console.log("Blogs Data:", data);
         setBlogs(data);

@@ -24,7 +24,7 @@ function Sidebar({ setComponent }) {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/users/logout", // Change GET to POST
+        "https://blogverse-ump1.onrender.com/api/users/logout", // Change GET to POST
         {}, // Sending an empty object as body
         { withCredentials: true }
       );

@@ -9,7 +9,7 @@ function MyBlogs() {
     const fetchMyBlogs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/blogs/getmyblog",
+          "https://blogverse-ump1.onrender.com/api/blogs/getmyblog",
           { withCredentials: true }
         );
         console.log(data);
@@ -23,9 +23,12 @@ function MyBlogs() {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:3000/api/blogs/deleteblog/${id}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `https://blogverse-ump1.onrender.com/api/blogs/deleteblog/${id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         toast.success(res.data.message || "Blog deleted successfully");
         setMyBlogs((value) => value.filter((blog) => blog._id !== id));

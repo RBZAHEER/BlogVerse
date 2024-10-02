@@ -31,7 +31,7 @@ function CreateBlog() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/blogs/createblog",
+        "https://blogverse-ump1.onrender.com/api/blogs/createblog",
         formData,
         {
           headers: {
