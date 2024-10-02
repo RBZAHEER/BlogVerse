@@ -21,7 +21,7 @@ app.use(
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://blog-verse-sandy.vercel.app/",
+    origin: [process.env.FRONTEND_URL || "https://blog-verse-sandy.vercel.app"],
     credentials: true,
   })
 );
