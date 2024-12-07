@@ -31,7 +31,7 @@ function Sidebar({ setComponent }) {
       toast.success(data.message);
       localStorage.removeItem("jwt");
       setIsAuthenticated(false);
-      navigateTo("/login");
+      navigateTo("/");
     } catch (error) {
       console.log(error);
       toast.error(error.response?.data?.message || "Failed to logout");
