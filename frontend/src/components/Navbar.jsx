@@ -1,10 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseOutline } from "react-icons/io5";
 
 function Navbar() {
   const [show, setShow] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const navigate = useNavigate();
+
+  // Simulate checking login status (you can replace this with a real API call or token check)
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Assuming you store JWT in localStorage
+    setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
+  }, []);
+
+  const handleLogout = () => {
+    // Clear token and update state
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/login"); // Redirect to login page
+  };
+
   return (
     <>
       <nav className="shadow-lg px-4 py-3">
@@ -31,8 +47,6 @@ function Navbar() {
             </Link>
           </div>
           <div>
-            {/* THis is for close and hamburger button for making website responsive */}
-
             <div
               className="md:hidden"
               onClick={() => {
@@ -53,12 +67,21 @@ function Navbar() {
             >
               Dashboard
             </Link>
-            <Link
-              to={"/login"}
-              className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded"
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to={"/login"}
+                className="bg-green-600 text-white font-semibold hover:bg-green-800 duration-300 px-4 py-2 rounded"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
         {/* Mobile */}
@@ -68,9 +91,6 @@ function Navbar() {
               <Link
                 to={"/"}
                 onClick={() => setShow(!show)}
-                smooth="true"
-                duration={500}
-                activeClass="active"
                 className="hover:text-blue-500"
               >
                 HOME
@@ -78,9 +98,6 @@ function Navbar() {
               <Link
                 to={"/blogs"}
                 onClick={() => setShow(!show)}
-                smooth="true"
-                duration={500}
-                activeClass="active"
                 className="hover:text-blue-500"
               >
                 BLOGS
@@ -88,9 +105,6 @@ function Navbar() {
               <Link
                 to={"/creators"}
                 onClick={() => setShow(!show)}
-                smooth="true"
-                duration={500}
-                activeClass="active"
                 className="hover:text-blue-500"
               >
                 CREATORS
@@ -98,9 +112,6 @@ function Navbar() {
               <Link
                 to={"/about"}
                 onClick={() => setShow(!show)}
-                smooth="true"
-                duration={500}
-                activeClass="active"
                 className="hover:text-blue-500"
               >
                 ABOUT
@@ -108,13 +119,29 @@ function Navbar() {
               <Link
                 to={"/contact"}
                 onClick={() => setShow(!show)}
-                smooth="true"
-                duration={500}
-                // activeClass="active"
                 className="hover:text-blue-500"
               >
                 CONTACT
               </Link>
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    setShow(!show);
+                    handleLogout();
+                  }}
+                  className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to={"/login"}
+                  onClick={() => setShow(!show)}
+                  className="bg-green-600 text-white font-semibold hover:bg-green-800 duration-300 px-4 py-2 rounded"
+                >
+                  Login
+                </Link>
+              )}
             </ul>
           </div>
         )}
