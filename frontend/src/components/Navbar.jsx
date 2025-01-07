@@ -10,13 +10,13 @@ function Navbar() {
 
   // Simulate checking login status (you can replace this with a real API call or token check)
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Assuming you store JWT in localStorage
+    const token = localStorage.getItem("jwt"); // Assuming you store JWT in localStorage
     setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
   }, []);
 
   const handleLogout = () => {
     // Clear token and update state
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     navigate("/login"); // Redirect to login page
   };
